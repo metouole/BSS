@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>AdminLTE 3 | Starter</title>
+    <title>{{ config('app.name') }} | Dash</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/css/app.css">
@@ -63,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="./img/boy_profile.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">John Doe</a>
+                    <a href="#" class="d-block">{{ Auth::user()->name }} </a>
                 </div>
             </div>
 
@@ -72,35 +72,56 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item">
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Starter Pages
-                                <i class="right fas fa-angle-left"></i>
+                                Dashboard
+
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Active Page</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Inactive Page</p>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Utilisateurs <!-- CRUD UTILISATEURS -->
+                            </p>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
+                            <i class="nav-icon fas fa-list-ul"></i>
                             <p>
-                                Simple Link
-                                <span class="right badge badge-danger">New</span>
+                                Catalogues <!-- CRUD PRODUIT -->
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-list-ol"></i>
+                            <p>
+                                Categories <!-- CRUD CATEGORY -->
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Profile
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-power-off"></i>
+                            <p>
+                                Deconnexion
                             </p>
                         </a>
                     </li>
