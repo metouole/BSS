@@ -34,16 +34,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </ul>
 
         <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
             <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
+                    <button class="btn btn-navbar" @click="searchit">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
-        </form>
 
     </nav>
     <!-- /.navbar -->
@@ -75,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <router-link to="/dashboard" class="nav-link">
+                        <router-link to="/home" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -84,6 +82,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </router-link>
                     </li>
 
+               @can('isAdmin')
                     <li class="nav-item">
                         <router-link to="users" class="nav-link">
                             <i class="nav-icon fas fa-users-cog"></i>
@@ -92,14 +91,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </router-link>
                     </li>
+                
+                 
                     <li class="nav-item">
-                        <router-link to="/catalogue" class="nav-link">
+                        <router-link to="/product" class="nav-link">
                             <i class="nav-icon fas fa-list-ul"></i>
                             <p>
                                 Catalogues <!-- CRUD PRODUIT -->
                             </p>
                         </router-link>
                     </li>
+                
+
 
                     <li class="nav-item">
                         <router-link to="category" class="nav-link">
@@ -111,6 +114,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
 
                     <li class="nav-item">
+                        <router-link to="developer" class="nav-link">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Developpeur
+                            </p>
+                        </router-link>
+                    </li>
+                @endcan
+
+                @can('isAuthor')
+
+                    <li class="nav-item">
+                        <router-link to="developer" class="nav-link">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Developpeur
+                            </p>
+                        </router-link>
+                    </li>
+
+                @endcan
+                    <li class="nav-item">
                         <router-link to="profile" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
@@ -118,14 +143,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </router-link>
                     </li>
-
+               
+                    
+             
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
                             <i class="nav-icon fas fa-power-off"></i>
-                            <p>
-                                Deconnexion
-                            </p>
+                            <p> {{ __('Deconnexion') }} </p>
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -140,6 +171,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container-fluid">
 
                 <router-view></router-view>
+                <!-- set progressbar -->
+                <vue-progress-bar></vue-progress-bar>
             </div>
         </div>
 
